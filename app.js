@@ -7,7 +7,10 @@ window.onload = function(){
         this.isVillain = data.isVillain;
     };
     Character.prototype.attackEnemy = function(enemy){
-        enemy.health = enemy.health - this.attack;
+        var max = this.attack;
+        var min = this.attack * 60 / 100;
+        var attack = Math.floor(Math.random() * (max - min) + min);
+        enemy.health = enemy.health - attack;
         if (enemy.health < 0){
             enemy.health = 0;
         }
