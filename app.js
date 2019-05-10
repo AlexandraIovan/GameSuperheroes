@@ -14,6 +14,7 @@ window.onload = function(){
         if (enemy.health < 0){
             enemy.health = 0;
         }
+        return attack;
     };
     Character.prototype.isDead = function(){
         return this.health <= 0;
@@ -125,13 +126,14 @@ window.onload = function(){
             isHeroAttacked = Math.random() < 0.5;
             renderMessage("Game started on planet " + currentPlanet.name);
            var gameUpdate = setInterval(function(){
+               var attackDamage;
                 if(isHeroAttacked) {
-                    villain.attackEnemy(superhero);
-                    renderMessage("Villain " + villain.name + " attacked superhero " + superhero.name + " with " + villain.attack + " damage.");
+                    attackDamage = villain.attackEnemy(superhero);
+                    renderMessage("Villain " + villain.name + " attacked superhero " + superhero.name + " with " + attackDamage + " damage.");
                     renderMessage("Left health for superhero " + superhero.name + " is " + superhero.health);
                 } else {
-                    superhero.attackEnemy(villain);
-                    renderMessage("Superhero " + superhero.name + " attacked villain " + villain.name + " with " + superhero.attack + " damage.");
+                    attackDamage = superhero.attackEnemy(villain);
+                    renderMessage("Superhero " + superhero.name + " attacked villain " + villain.name + " with " + attackDamage + " damage.");
                     renderMessage("Left health for villain " + villain.name + " is " + villain.health);
                 }
                 
